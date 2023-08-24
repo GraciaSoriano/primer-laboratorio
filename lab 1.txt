@@ -1,0 +1,33 @@
+using System;
+using System.Windows.Forms;
+
+namespace UnitConverterApp
+{
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void ConvertButton_Click(object sender, EventArgs e)
+        {
+            if (double.TryParse(kilometersTextBox.Text, out double kilometers))
+            {
+                // Convert kilometers to other units
+                double miles = kilometers * 0.621371;
+                double meters = kilometers * 1000;
+                double yards = meters * 1.09361;
+
+                // Update the result labels
+                milesLabel.Text = $"Miles: {miles:F2}";
+                metersLabel.Text = $"Meters: {meters:F2}";
+                yardsLabel.Text = $"Yards: {yards:F2}";
+            }
+            else
+            {
+                MessageBox.Show("Invalid input. Please enter a valid number of kilometers.");
+            }
+        }
+    }
+}
